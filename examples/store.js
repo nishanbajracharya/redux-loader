@@ -1,7 +1,6 @@
 import { applyMiddleware, createStore, compose } from 'redux';
 
-import reduxLoaderReducer from './reducer';
-import reduxLoaderMiddleware from './middleware';
+import { reduxLoaderReducer, reduxLoaderMiddleware } from '../lib';
 
 const enhancer = compose(applyMiddleware(reduxLoaderMiddleware()));
 
