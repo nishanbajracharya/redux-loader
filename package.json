@@ -1,6 +1,6 @@
 {
   "name": "@nisbaj/redux-loader",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "A redux middleware to handle loading states triggered through start, success and failure actions.",
   "main": "lib/index.js",
   "scripts": {
