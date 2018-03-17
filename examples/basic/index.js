@@ -53,7 +53,7 @@ const triggerExample = () => {
       store.dispatch(failureAction);
       log(failureAction, 'failure');
     }
-  }, 100);
+  }, 1500);
 };
 
 btn.onclick = () => triggerExample();

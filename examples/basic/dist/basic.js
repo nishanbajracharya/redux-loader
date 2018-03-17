@@ -1467,13 +1467,13 @@ var triggerExample = function triggerExample() {
       _store2.default.dispatch(failureAction);
       log(failureAction, 'failure');
     }
-  }, 100);
+  }, 1500);
 };
 
 btn.onclick = function () {
   return triggerExample();
 };
-},{"../store":3,"../../lib":4}],35:[function(require,module,exports) {
+},{"../store":3,"../../lib":4}],36:[function(require,module,exports) {
 
 var global = (1, eval)('this');
 var OldModule = module.bundle.Module;
@@ -1596,5 +1596,5 @@ function hmrAccept(bundle, id) {
     return hmrAccept(global.require, id);
   });
 }
-},{}]},{},[35,2])
+},{}]},{},[36,2])
 //# sourceMappingURL=/dist/basic.map
