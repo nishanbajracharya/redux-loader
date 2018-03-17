@@ -31,4 +31,4 @@ export const registerLoader = ({
 export const unregisterLoader = id => ({
   type: UNREGISTER_LOADER,
   payload: id
-})
+});
