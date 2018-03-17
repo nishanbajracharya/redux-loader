@@ -2,7 +2,12 @@ import store from '../store';
 import { reduxLoaderActions } from '../../lib';
 
 const btn = document.querySelector('.button');
+const logElem = document.querySelector('.logs');
 const loading = document.querySelector('.loading');
+
+const log = action => {
+  logElem.innerHTML += `<li>${action.type}</li>`;
+};
 
 store.subscribe(() => {
   if (store.getState().reduxLoader.loaders.myLoader) {
@@ -26,14 +31,17 @@ const successAction = {
   type: 'SUCCESS',
 };
 
+const triggerAction = { type: 'SOME_ACTION_THAT_TRIGGERS_LOADING' };
+
 store.dispatch(registerAction);
 
 const triggerExample = () => {
-
-  store.dispatch({ type: 'SOME_ACTION_THAT_TRIGGERS_LOADING', payload: 'Mike' });
+  store.dispatch(triggerAction);
+  log(triggerAction);
 
   setTimeout(() => {
     store.dispatch(successAction);
+    log(successAction);
   }, 1500);
 };
 

@@ -1414,7 +1414,12 @@ var _lib = require('../../lib');
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 var btn = document.querySelector('.button');
+var logElem = document.querySelector('.logs');
 var loading = document.querySelector('.loading');
+
+var log = function log(action) {
+  logElem.innerHTML += '<li>' + action.type + '</li>';
+};
 
 _store2.default.subscribe(function () {
   if (_store2.default.getState().reduxLoader.loaders.myLoader) {
@@ -1438,21 +1443,24 @@ var successAction = {
   type: 'SUCCESS'
 };
 
+var triggerAction = { type: 'SOME_ACTION_THAT_TRIGGERS_LOADING' };
+
 _store2.default.dispatch(registerAction);
 
 var triggerExample = function triggerExample() {
-
-  _store2.default.dispatch({ type: 'SOME_ACTION_THAT_TRIGGERS_LOADING', payload: 'Mike' });
+  _store2.default.dispatch(triggerAction);
+  log(triggerAction);
 
   setTimeout(function () {
     _store2.default.dispatch(successAction);
+    log(successAction);
   }, 1500);
 };
 
 btn.onclick = function () {
   return triggerExample();
 };
-},{"../store":3,"../../lib":4}],33:[function(require,module,exports) {
+},{"../store":3,"../../lib":4}],34:[function(require,module,exports) {
 
 var global = (1, eval)('this');
 var OldModule = module.bundle.Module;
@@ -1575,5 +1583,5 @@ function hmrAccept(bundle, id) {
     return hmrAccept(global.require, id);
   });
 }
-},{}]},{},[33,2])
+},{}]},{},[34,2])
 //# sourceMappingURL=/dist/basic.map
