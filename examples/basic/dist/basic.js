@@ -1112,17 +1112,17 @@ var START_LOADING = exports.START_LOADING = '@@START_LOADING';
 var REGISTER_LOADER = exports.REGISTER_LOADER = '@@REGISTER_LOADER';
 var UNREGISTER_LOADER = exports.UNREGISTER_LOADER = '@@UNREGISTER_LOADER';
 
-var stopLoading = exports.stopLoading = function stopLoading(ids) {
+var stopLoading = exports.stopLoading = function stopLoading(id) {
   return {
     type: STOP_LOADING,
-    payload: ids
+    payload: id
   };
 };
 
-var startLoading = exports.startLoading = function startLoading(ids) {
+var startLoading = exports.startLoading = function startLoading(id) {
   return {
     type: START_LOADING,
-    payload: ids
+    payload: id
   };
 };
 
@@ -1477,7 +1477,7 @@ btn2.onclick = function () {
     type: 'FAILURE_2'
   });
 };
-},{"./store":3,"../../lib":4}],35:[function(require,module,exports) {
+},{"./store":3,"../../lib":4}],36:[function(require,module,exports) {
 
 var global = (1, eval)('this');
 var OldModule = module.bundle.Module;
@@ -1600,5 +1600,5 @@ function hmrAccept(bundle, id) {
     return hmrAccept(global.require, id);
   });
 }
-},{}]},{},[35,2])
+},{}]},{},[36,2])
 //# sourceMappingURL=/dist/basic.map
