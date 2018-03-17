@@ -1,9 +1,14 @@
-import { applyMiddleware, createStore, compose } from 'redux';
+import { applyMiddleware, createStore, compose, combineReducers } from 'redux';
 
 import { reduxLoaderReducer, reduxLoaderMiddleware } from '../lib';
 
-const enhancer = compose(applyMiddleware(reduxLoaderMiddleware()));
+const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
+const enhancer = composeEnhancers(applyMiddleware(reduxLoaderMiddleware()));
 
-const store = createStore(reduxLoaderReducer, enhancer);
+const reducer = combineReducers({
+  reduxLoader: reduxLoaderReducer,
+});
+
+const store = createStore(reducer, enhancer);
 
 export default store;
