@@ -1,4 +1,4 @@
-import * as actions from './action';
+import * as actions from './actions';
 
 const omit = (obj = {}, blacklist = '') =>
   Object.keys(obj)
