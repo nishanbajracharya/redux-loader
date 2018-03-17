@@ -5,8 +5,8 @@ const btn = document.querySelector('.button');
 const logElem = document.querySelector('.logs');
 const loading = document.querySelector('.loading');
 
-const log = action => {
-  logElem.innerHTML += `<li>${action.type}</li>`;
+const log = (action, className = '') => {
+  logElem.innerHTML += `<li class='${className}'>${action.type}</li>`;
 };
 
 store.subscribe(() => {
@@ -31,6 +31,10 @@ const successAction = {
   type: 'SUCCESS',
 };
 
+const failureAction = {
+  type: 'FAILURE',
+};
+
 const triggerAction = { type: 'SOME_ACTION_THAT_TRIGGERS_LOADING' };
 
 store.dispatch(registerAction);
@@ -39,10 +43,17 @@ const triggerExample = () => {
   store.dispatch(triggerAction);
   log(triggerAction);
 
+  const success = Math.round(Math.random());
+
   setTimeout(() => {
-    store.dispatch(successAction);
-    log(successAction);
-  }, 1500);
+    if(success) {
+      store.dispatch(successAction);
+      log(successAction, 'success');
+    } else {
+      store.dispatch(failureAction);
+      log(failureAction, 'failure');
+    }
+  }, 100);
 };
 
 btn.onclick = () => triggerExample();

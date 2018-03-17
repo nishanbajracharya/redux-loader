@@ -4,13 +4,56 @@
   <title>Basic Redux Loader Example</title>
   <meta charset="UTF-8">
   <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: sans-serif;
+    }
+
+    body {
+      margin: 20px;
+      display: flex;
+      background: #f5f5f5;
+      justify-content: space-between;
+    }
+
+    ul {
+      list-style: none;
+      background: #fff;
+      border: 1px solid #ccc;
+    }
+
+    ul li {
+      width: 400px;
+      padding: 10px;
+      text-align: center;
+      border-bottom: 1px solid #ccc;
+    }
+
+    ul li.success {
+      color: #fff;
+      background: #292;
+    }
+
+    ul li.failure {
+      color: #fff;
+      background: #a22;
+    }
+
+    ul li.header {
+      font-weight: 600;
+      background: #ddd;
+      text-transform: uppercase;
+    }
+
     .button-container {
       width: 400px;
       height: 200px;
       display: flex;
       overflow: hidden;
       position: relative;
-      border-radius: 5px;
+      margin-bottom: 20px;
     }
 
     .button {
@@ -22,6 +65,7 @@
       font-size: 20px;
       background: #eee;
       align-items: center;
+      border: 1px solid #ccc;
       justify-content: center;
     }
 
@@ -100,7 +144,9 @@
     </div>
   </div>
 
-  <ul class="logs"></ul>
+  <ul class="logs">
+    <li class="header">Actions</li>
+  </ul>
 
   <script src="/dist/basic.js"></script>
 </body>

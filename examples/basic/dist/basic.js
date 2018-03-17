@@ -1418,7 +1418,9 @@ var logElem = document.querySelector('.logs');
 var loading = document.querySelector('.loading');
 
 var log = function log(action) {
-  logElem.innerHTML += '<li>' + action.type + '</li>';
+  var className = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : '';
+
+  logElem.innerHTML += '<li class=\'' + className + '\'>' + action.type + '</li>';
 };
 
 _store2.default.subscribe(function () {
@@ -1443,6 +1445,10 @@ var successAction = {
   type: 'SUCCESS'
 };
 
+var failureAction = {
+  type: 'FAILURE'
+};
+
 var triggerAction = { type: 'SOME_ACTION_THAT_TRIGGERS_LOADING' };
 
 _store2.default.dispatch(registerAction);
@@ -1451,16 +1457,23 @@ var triggerExample = function triggerExample() {
   _store2.default.dispatch(triggerAction);
   log(triggerAction);
 
+  var success = Math.round(Math.random());
+
   setTimeout(function () {
-    _store2.default.dispatch(successAction);
-    log(successAction);
-  }, 1500);
+    if (success) {
+      _store2.default.dispatch(successAction);
+      log(successAction, 'success');
+    } else {
+      _store2.default.dispatch(failureAction);
+      log(failureAction, 'failure');
+    }
+  }, 100);
 };
 
 btn.onclick = function () {
   return triggerExample();
 };
-},{"../store":3,"../../lib":4}],34:[function(require,module,exports) {
+},{"../store":3,"../../lib":4}],35:[function(require,module,exports) {
 
 var global = (1, eval)('this');
 var OldModule = module.bundle.Module;
@@ -1482,7 +1495,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = '' || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + '59846' + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + '60071' + '/');
   ws.onmessage = function (event) {
     var data = JSON.parse(event.data);
 
@@ -1583,5 +1596,5 @@ function hmrAccept(bundle, id) {
     return hmrAccept(global.require, id);
   });
 }
-},{}]},{},[34,2])
+},{}]},{},[35,2])
 //# sourceMappingURL=/dist/basic.map
