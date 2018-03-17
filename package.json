@@ -19,5 +19,11 @@
   "bugs": {
     "url": "https://github.com/nishanbajracharya/redux-loader/issues"
   },
-  "homepage": "https://github.com/nishanbajracharya/redux-loader#readme"
+  "homepage": "https://github.com/nishanbajracharya/redux-loader#readme",
+  "devDependencies": {
+    "jest": "^22.4.2"
+  },
+  "dependencies": {
+    "redux": "^3.7.2"
+  }
 }
