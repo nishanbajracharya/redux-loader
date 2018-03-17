@@ -7,13 +7,13 @@ const initialState = {
   startActions: {},
   successActions: {},
   failureActions: {},
-}
+};
 
 const registerAction = actions.registerLoader({
   id: 'myLoader',
   startAction: 'DUMMY_START_ACTION',
   successAction: 'DUMMY_SUCCESS_ACTION',
-  failureAction: 'DUMMY_FAILURE_ACTION'
+  failureAction: 'DUMMY_FAILURE_ACTION',
 });
 
 const stopLoadingAction = actions.stopLoading({myLoader: false});
@@ -29,20 +29,20 @@ it('should return new state with registered loader', () => {
         id: 'myLoader',
         startAction: 'DUMMY_START_ACTION',
         successAction: 'DUMMY_SUCCESS_ACTION',
-        failureAction: 'DUMMY_FAILURE_ACTION'
-      }
+        failureAction: 'DUMMY_FAILURE_ACTION',
+      },
     },
     loaders: {
-      myLoader: false
+      myLoader: false,
     },
     startActions: {
-      DUMMY_START_ACTION: ['myLoader']
+      DUMMY_START_ACTION: ['myLoader'],
     },
     successActions: {
-      DUMMY_SUCCESS_ACTION: ['myLoader']
+      DUMMY_SUCCESS_ACTION: ['myLoader'],
     },
     failureActions: {
-      DUMMY_FAILURE_ACTION: ['myLoader']
+      DUMMY_FAILURE_ACTION: ['myLoader'],
     },
   };
 
@@ -59,20 +59,20 @@ it('should return new state with loading started', () => {
         id: 'myLoader',
         startAction: 'DUMMY_START_ACTION',
         successAction: 'DUMMY_SUCCESS_ACTION',
-        failureAction: 'DUMMY_FAILURE_ACTION'
-      }
+        failureAction: 'DUMMY_FAILURE_ACTION',
+      },
     },
     loaders: {
-      myLoader: true
+      myLoader: true,
     },
     startActions: {
-      DUMMY_START_ACTION: ['myLoader']
+      DUMMY_START_ACTION: ['myLoader'],
     },
     successActions: {
-      DUMMY_SUCCESS_ACTION: ['myLoader']
+      DUMMY_SUCCESS_ACTION: ['myLoader'],
     },
     failureActions: {
-      DUMMY_FAILURE_ACTION: ['myLoader']
+      DUMMY_FAILURE_ACTION: ['myLoader'],
     },
   };
 
@@ -90,20 +90,20 @@ it('should return new state with loading stopped', () => {
         id: 'myLoader',
         startAction: 'DUMMY_START_ACTION',
         successAction: 'DUMMY_SUCCESS_ACTION',
-        failureAction: 'DUMMY_FAILURE_ACTION'
-      }
+        failureAction: 'DUMMY_FAILURE_ACTION',
+      },
     },
     loaders: {
-      myLoader: false
+      myLoader: false,
     },
     startActions: {
-      DUMMY_START_ACTION: ['myLoader']
+      DUMMY_START_ACTION: ['myLoader'],
     },
     successActions: {
-      DUMMY_SUCCESS_ACTION: ['myLoader']
+      DUMMY_SUCCESS_ACTION: ['myLoader'],
     },
     failureActions: {
-      DUMMY_FAILURE_ACTION: ['myLoader']
+      DUMMY_FAILURE_ACTION: ['myLoader'],
     },
   };
 
