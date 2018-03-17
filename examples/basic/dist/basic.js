@@ -1128,14 +1128,14 @@ var startLoading = exports.startLoading = function startLoading(id) {
 
 var registerLoader = exports.registerLoader = function registerLoader(_ref) {
   var id = _ref.id,
-      startActions = _ref.startActions,
-      stopActions = _ref.stopActions;
+      stopActions = _ref.stopActions,
+      startActions = _ref.startActions;
   return {
     type: REGISTER_LOADER,
     payload: {
       id: id,
-      startActions: startActions,
-      stopActions: stopActions
+      stopActions: stopActions,
+      startActions: startActions
     }
   };
 };
@@ -1197,16 +1197,12 @@ var omit = function omit() {
   }, {});
 };
 
-var setLoaderIdStatus = function setLoaderIdStatus() {
+var mapArrayToObjectValue = function mapArrayToObjectValue() {
   var ids = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : [];
-  var status = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : false;
+  var status = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : '';
   return ids.reduce(function (acc, id) {
     return _extends({}, acc, _defineProperty({}, id, status));
   }, {});
-};
-
-var spreadArrayToObject = function spreadArrayToObject(array, value, state) {
-  return _extends({}, state, setLoaderIdStatus(array, value));
 };
 
 var INITIAL_STATE = {
@@ -1224,8 +1220,8 @@ var reducer = function reducer() {
     case actions.REGISTER_LOADER:
       return _extends({}, state, {
         loaders: _extends({}, state.loaders, _defineProperty({}, action.payload.id, false)),
-        startActions: spreadArrayToObject(action.payload.startActions, action.payload.id, state.startActions),
-        stopActions: spreadArrayToObject(action.payload.stopActions, action.payload.id, state.stopActions),
+        startActions: _extends({}, state.startActions, mapArrayToObjectValue(action.payload.startActions, action.payload.id)),
+        stopActions: _extends({}, state.stopActions, mapArrayToObjectValue(action.payload.stopActions, action.payload.id)),
         history: _extends({}, state.history, _defineProperty({}, action.payload.id, action.payload))
       });
     case actions.UNREGISTER_LOADER:
@@ -1291,20 +1287,20 @@ var middleware = function middleware() {
           var stopActionTypes = Object.keys(stopActions);
 
           if (startActionTypes.includes(action.type)) {
-            var ids = startActions[action.type];
+            var id = startActions[action.type];
 
             return next({
               type: actions.START_LOADING,
-              payload: ids
+              payload: id
             });
           }
 
           if (stopActionTypes.includes(action.type)) {
-            var _ids = stopActions[action.type];
+            var _id = stopActions[action.type];
 
             return next({
               type: actions.STOP_LOADING,
-              payload: _ids
+              payload: _id
             });
           }
 

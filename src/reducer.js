@@ -6,7 +6,7 @@ const omit = (obj = {}, blacklist = []) =>
     .reduce((newObj, key) => ({ ...newObj, [key]: obj[key] }), {});
 
 
-const setLoaderIdStatus = (ids = [], status = false) =>
+const reduceArrayToObjectValue = (ids = [], status = '') =>
   ids.reduce(
     (acc, id) => ({
       ...acc,
@@ -14,12 +14,6 @@ const setLoaderIdStatus = (ids = [], status = false) =>
     }),
     {}
   );
-
-const spreadArrayToObject = (array, value, state) => ({
-  ...state,
-  ...setLoaderIdStatus(array, value),
-});
-
 
 const INITIAL_STATE = {
   history: {},
@@ -34,8 +28,8 @@ const reducer = (state = INITIAL_STATE, action) => {
       return {
         ...state,
         loaders: { ...state.loaders, [action.payload.id]: false },
-        startActions: spreadArrayToObject(action.payload.startActions, action.payload.id, state.startActions),
-        stopActions: spreadArrayToObject(action.payload.stopActions, action.payload.id, state.stopActions),
+        startActions: {...state.startActions, ...reduceArrayToObjectValue(action.payload.startActions, action.payload.id)},
+        stopActions: {...state.stopActions, ...reduceArrayToObjectValue(action.payload.stopActions, action.payload.id)},
         history: {
           ...state.history,
           [action.payload.id]: action.payload,

@@ -15,20 +15,20 @@ const middleware = (key = DEFAULT_REDUCER) => store => next => action => {
     const stopActionTypes = Object.keys(stopActions);
 
     if (startActionTypes.includes(action.type)) {
-      const ids = startActions[action.type];
+      const id = startActions[action.type];
 
       return next({
         type: actions.START_LOADING,
-        payload: ids,
+        payload: id,
       });
     }
 
     if (stopActionTypes.includes(action.type)) {
-      const ids = stopActions[action.type];
+      const id = stopActions[action.type];
 
       return next({
         type: actions.STOP_LOADING,
-        payload: ids,
+        payload: id,
       });
     }
 

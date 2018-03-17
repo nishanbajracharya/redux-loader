@@ -15,14 +15,14 @@ export const startLoading = id => ({
 
 export const registerLoader = ({
   id,
-  startActions,
   stopActions,
+  startActions,
 }) => ({
   type: REGISTER_LOADER,
   payload: {
     id,
-    startActions,
     stopActions,
+    startActions,
   },
 });
 
