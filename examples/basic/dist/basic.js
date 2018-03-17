@@ -1197,7 +1197,7 @@ var omit = function omit() {
   }, {});
 };
 
-var mapArrayToObjectValue = function mapArrayToObjectValue() {
+var reduceArrayToObjectValue = function reduceArrayToObjectValue() {
   var ids = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : [];
   var status = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : '';
   return ids.reduce(function (acc, id) {
@@ -1220,8 +1220,8 @@ var reducer = function reducer() {
     case actions.REGISTER_LOADER:
       return _extends({}, state, {
         loaders: _extends({}, state.loaders, _defineProperty({}, action.payload.id, false)),
-        startActions: _extends({}, state.startActions, mapArrayToObjectValue(action.payload.startActions, action.payload.id)),
-        stopActions: _extends({}, state.stopActions, mapArrayToObjectValue(action.payload.stopActions, action.payload.id)),
+        startActions: _extends({}, state.startActions, reduceArrayToObjectValue(action.payload.startActions, action.payload.id)),
+        stopActions: _extends({}, state.stopActions, reduceArrayToObjectValue(action.payload.stopActions, action.payload.id)),
         history: _extends({}, state.history, _defineProperty({}, action.payload.id, action.payload))
       });
     case actions.UNREGISTER_LOADER:
