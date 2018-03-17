@@ -5,30 +5,30 @@ export const UNREGISTER_LOADER = '@@UNREGISTER_LOADER';
 
 export const stopLoading = ids => ({
   type: STOP_LOADING,
-  payload: ids
+  payload: ids,
 });
 
 export const startLoading = ids => ({
   type: START_LOADING,
-  payload: ids
+  payload: ids,
 });
 
 export const registerLoader = ({
   id,
   startAction,
   successAction,
-  failureAction
+  failureAction,
 }) => ({
   type: REGISTER_LOADER,
   payload: {
     id,
     startAction,
     successAction,
-    failureAction
-  }
+    failureAction,
+  },
 });
 
 export const unregisterLoader = id => ({
   type: UNREGISTER_LOADER,
-  payload: id
+  payload: id,
 });
