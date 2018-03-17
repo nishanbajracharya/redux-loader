@@ -5,6 +5,15 @@ const omit = (obj = {}, blacklist = '') =>
     .filter(key => blacklist !== key)
     .reduce((newObj, key) => ({ ...newObj, [key]: obj[key] }), {});
 
+const setLoaderIdStatus = (ids = [], status = false) =>
+  ids.reduce(
+    (acc, id) => ({
+      ...acc,
+      [id]: status,
+    }),
+    {}
+  );
+
 const INITIAL_STATE = {
   history: {},
   loaders: {},
@@ -14,7 +23,7 @@ const INITIAL_STATE = {
 };
 
 const reducer = (state = INITIAL_STATE, action) => {
-  switch(action.type) {
+  switch (action.type) {
     case actions.REGISTER_LOADER:
       return {
         ...state,
@@ -70,10 +79,14 @@ const reducer = (state = INITIAL_STATE, action) => {
         ),
       };
     case actions.START_LOADING:
+      return {
+        ...state,
+        loaders: { ...state.loaders, ...setLoaderIdStatus(action.payload, true) },
+      };
     case actions.STOP_LOADING:
       return {
         ...state,
-        loaders: { ...state.loaders, ...action.payload },
+        loaders: { ...state.loaders, ...setLoaderIdStatus(action.payload, false) },
       };
     default:
       return state;

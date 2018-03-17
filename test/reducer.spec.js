@@ -16,8 +16,8 @@ const registerAction = actions.registerLoader({
   failureAction: 'DUMMY_FAILURE_ACTION',
 });
 
-const stopLoadingAction = actions.stopLoading({myLoader: false});
-const startLoadingAction = actions.startLoading({myLoader: true});
+const stopLoadingAction = actions.stopLoading(['myLoader']);
+const startLoadingAction = actions.startLoading(['myLoader']);
 const unregisterAction = actions.unregisterLoader('myLoader');
 
 it('should return new state with registered loader', () => {

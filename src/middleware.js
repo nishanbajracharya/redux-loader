@@ -2,15 +2,6 @@ import * as actions from './actions';
 
 const DEFAULT_REDUCER = 'reduxLoader';
 
-const setLoaderIdStatus = (ids = [], status = false) =>
-  ids.reduce(
-    (acc, id) => ({
-      ...acc,
-      [id]: status,
-    }),
-    {}
-  );
-
 const middleware = (key = DEFAULT_REDUCER) => store => next => action => {
   const state = store.getState()[key];
 
@@ -31,7 +22,7 @@ const middleware = (key = DEFAULT_REDUCER) => store => next => action => {
 
       return next({
         type: actions.START_LOADING,
-        payload: setLoaderIdStatus(ids, true),
+        payload: ids,
       });
     }
 
@@ -40,7 +31,7 @@ const middleware = (key = DEFAULT_REDUCER) => store => next => action => {
 
       return next({
         type: actions.STOP_LOADING,
-        payload: setLoaderIdStatus(ids, false),
+        payload: ids,
       });
     }
 
@@ -49,7 +40,7 @@ const middleware = (key = DEFAULT_REDUCER) => store => next => action => {
 
       return next({
         type: actions.STOP_LOADING,
-        payload: setLoaderIdStatus(ids, false),
+        payload: ids,
       });
     }
 
