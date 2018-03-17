@@ -56,7 +56,7 @@
       margin-bottom: 20px;
     }
 
-    .button {
+    .button, .button2 {
       flex: 1;
       border: none;
       display: flex;
@@ -69,11 +69,11 @@
       justify-content: center;
     }
 
-    .button:hover {
+    .button:hover, .button2:hover {
       background: #ddd;
     }
 
-    .loading {
+    .loading, .loading2 {
       top: 0;
       left: 0;
       right: 0;
@@ -143,6 +143,14 @@
       <div class="loader">Loading...</div>
     </div>
   </div>
+
+
+  <div class="button-container">
+      <button class="button2">Click Me!</button>
+      <div class="loading2">
+        <div class="loader">Loading...</div>
+      </div>
+    </div>
 
   <ul class="logs">
     <li class="header">Actions</li>

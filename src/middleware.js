@@ -11,11 +11,8 @@ const middleware = (key = DEFAULT_REDUCER) => store => next => action => {
     const startActions = state.startActions || {};
     const startActionTypes = Object.keys(startActions);
 
-    const successActions = state.successActions || {};
-    const successActionTypes = Object.keys(successActions);
-
-    const failureActions = state.failureActions || {};
-    const failureActionTypes = Object.keys(failureActions);
+    const stopActions = state.stopActions || {};
+    const stopActionTypes = Object.keys(stopActions);
 
     if (startActionTypes.includes(action.type)) {
       const ids = startActions[action.type];
@@ -26,17 +23,8 @@ const middleware = (key = DEFAULT_REDUCER) => store => next => action => {
       });
     }
 
-    if (successActionTypes.includes(action.type)) {
-      const ids = successActions[action.type];
-
-      return next({
-        type: actions.STOP_LOADING,
-        payload: ids,
-      });
-    }
-
-    if (failureActionTypes.includes(action.type)) {
-      const ids = failureActions[action.type];
+    if (stopActionTypes.includes(action.type)) {
+      const ids = stopActions[action.type];
 
       return next({
         type: actions.STOP_LOADING,

@@ -891,7 +891,7 @@ function combineReducers(reducers) {
     return hasChanged ? nextState : state;
   };
 }
-},{"./createStore":9,"lodash-es/isPlainObject":17,"./utils/warning":14}],11:[function(require,module,exports) {
+},{"./createStore":9,"lodash-es/isPlainObject":17,"./utils/warning":14}],12:[function(require,module,exports) {
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -984,7 +984,7 @@ function compose() {
     };
   });
 }
-},{}],12:[function(require,module,exports) {
+},{}],11:[function(require,module,exports) {
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -1052,7 +1052,7 @@ function applyMiddleware() {
     };
   };
 }
-},{"./compose":13}],8:[function(require,module,exports) {
+},{"./compose":13}],5:[function(require,module,exports) {
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -1101,7 +1101,7 @@ exports.combineReducers = _combineReducers2.default;
 exports.bindActionCreators = _bindActionCreators2.default;
 exports.applyMiddleware = _applyMiddleware2.default;
 exports.compose = _compose2.default;
-},{"./createStore":9,"./combineReducers":10,"./bindActionCreators":11,"./applyMiddleware":12,"./compose":13,"./utils/warning":14}],6:[function(require,module,exports) {
+},{"./createStore":9,"./combineReducers":10,"./bindActionCreators":12,"./applyMiddleware":11,"./compose":13,"./utils/warning":14}],8:[function(require,module,exports) {
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -1128,16 +1128,14 @@ var startLoading = exports.startLoading = function startLoading(ids) {
 
 var registerLoader = exports.registerLoader = function registerLoader(_ref) {
   var id = _ref.id,
-      startAction = _ref.startAction,
-      successAction = _ref.successAction,
-      failureAction = _ref.failureAction;
+      startActions = _ref.startActions,
+      stopActions = _ref.stopActions;
   return {
     type: REGISTER_LOADER,
     payload: {
       id: id,
-      startAction: startAction,
-      successAction: successAction,
-      failureAction: failureAction
+      startActions: startActions,
+      stopActions: stopActions
     }
   };
 };
@@ -1148,7 +1146,7 @@ var unregisterLoader = exports.unregisterLoader = function unregisterLoader(id) 
     payload: id
   };
 };
-},{}],5:[function(require,module,exports) {
+},{}],6:[function(require,module,exports) {
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -1181,16 +1179,6 @@ function _interopRequireWildcard(obj) {
   }
 }
 
-function _toConsumableArray(arr) {
-  if (Array.isArray(arr)) {
-    for (var i = 0, arr2 = Array(arr.length); i < arr.length; i++) {
-      arr2[i] = arr[i];
-    }return arr2;
-  } else {
-    return Array.from(arr);
-  }
-}
-
 function _defineProperty(obj, key, value) {
   if (key in obj) {
     Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true });
@@ -1201,9 +1189,9 @@ function _defineProperty(obj, key, value) {
 
 var omit = function omit() {
   var obj = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
-  var blacklist = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : '';
+  var blacklist = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : [];
   return Object.keys(obj).filter(function (key) {
-    return blacklist !== key;
+    return !blacklist.includes(key);
   }).reduce(function (newObj, key) {
     return _extends({}, newObj, _defineProperty({}, key, obj[key]));
   }, {});
@@ -1217,12 +1205,15 @@ var setLoaderIdStatus = function setLoaderIdStatus() {
   }, {});
 };
 
+var spreadArrayToObject = function spreadArrayToObject(array, value, state) {
+  return _extends({}, state, setLoaderIdStatus(array, value));
+};
+
 var INITIAL_STATE = {
   history: {},
   loaders: {},
   startActions: {},
-  successActions: {},
-  failureActions: {}
+  stopActions: {}
 };
 
 var reducer = function reducer() {
@@ -1233,26 +1224,24 @@ var reducer = function reducer() {
     case actions.REGISTER_LOADER:
       return _extends({}, state, {
         loaders: _extends({}, state.loaders, _defineProperty({}, action.payload.id, false)),
-        startActions: _extends({}, state.startAction, _defineProperty({}, action.payload.startAction, [].concat(_toConsumableArray(new Set([].concat(_toConsumableArray(state[action.payload.startAction] || []), [action.payload.id])))))),
-        successActions: _extends({}, state.successActions, _defineProperty({}, action.payload.successAction, [].concat(_toConsumableArray(new Set([].concat(_toConsumableArray(state[action.payload.successAction] || []), [action.payload.id])))))),
-        failureActions: _extends({}, state.failureActions, _defineProperty({}, action.payload.failureAction, [].concat(_toConsumableArray(new Set([].concat(_toConsumableArray(state[action.payload.failureAction] || []), [action.payload.id])))))),
+        startActions: spreadArrayToObject(action.payload.startActions, action.payload.id, state.startActions),
+        stopActions: spreadArrayToObject(action.payload.stopActions, action.payload.id, state.stopActions),
         history: _extends({}, state.history, _defineProperty({}, action.payload.id, action.payload))
       });
     case actions.UNREGISTER_LOADER:
       return _extends({}, state, {
         history: omit(state.history, action.payload),
         loaders: omit(state.loaders, action.payload),
-        startActions: omit(state.startActions, state.history[action.payload].startAction),
-        successActions: omit(state.successActions, state.history[action.payload].successAction),
-        failureActions: omit(state.failureActions, state.history[action.payload].failureAction)
+        startActions: omit(state.startActions, state.history[action.payload].startActions),
+        stopActions: omit(state.stopActions, state.history[action.payload].stopActions)
       });
     case actions.START_LOADING:
       return _extends({}, state, {
-        loaders: _extends({}, state.loaders, setLoaderIdStatus(action.payload, true))
+        loaders: _extends({}, state.loaders, _defineProperty({}, action.payload, true))
       });
     case actions.STOP_LOADING:
       return _extends({}, state, {
-        loaders: _extends({}, state.loaders, setLoaderIdStatus(action.payload, false))
+        loaders: _extends({}, state.loaders, _defineProperty({}, action.payload, false))
       });
     default:
       return state;
@@ -1260,7 +1249,7 @@ var reducer = function reducer() {
 };
 
 exports.default = reducer;
-},{"./actions":6}],7:[function(require,module,exports) {
+},{"./actions":8}],7:[function(require,module,exports) {
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -1298,11 +1287,8 @@ var middleware = function middleware() {
           var startActions = state.startActions || {};
           var startActionTypes = Object.keys(startActions);
 
-          var successActions = state.successActions || {};
-          var successActionTypes = Object.keys(successActions);
-
-          var failureActions = state.failureActions || {};
-          var failureActionTypes = Object.keys(failureActions);
+          var stopActions = state.stopActions || {};
+          var stopActionTypes = Object.keys(stopActions);
 
           if (startActionTypes.includes(action.type)) {
             var ids = startActions[action.type];
@@ -1313,21 +1299,12 @@ var middleware = function middleware() {
             });
           }
 
-          if (successActionTypes.includes(action.type)) {
-            var _ids = successActions[action.type];
+          if (stopActionTypes.includes(action.type)) {
+            var _ids = stopActions[action.type];
 
             return next({
               type: actions.STOP_LOADING,
               payload: _ids
-            });
-          }
-
-          if (failureActionTypes.includes(action.type)) {
-            var _ids2 = failureActions[action.type];
-
-            return next({
-              type: actions.STOP_LOADING,
-              payload: _ids2
             });
           }
 
@@ -1341,7 +1318,7 @@ var middleware = function middleware() {
 };
 
 exports.default = middleware;
-},{"./actions":6}],4:[function(require,module,exports) {
+},{"./actions":8}],4:[function(require,module,exports) {
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -1381,7 +1358,7 @@ exports.reduxLoaderActions = reduxLoaderActions;
 exports.reduxLoaderReducer = _reducer2.default;
 exports.reduxLoaderMiddleware = _middleware2.default;
 exports.default = _middleware2.default;
-},{"./reducer":5,"./actions":6,"./middleware":7}],3:[function(require,module,exports) {
+},{"./reducer":6,"./actions":8,"./middleware":7}],3:[function(require,module,exports) {
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -1390,7 +1367,7 @@ Object.defineProperty(exports, "__esModule", {
 
 var _redux = require('redux');
 
-var _lib = require('../lib');
+var _lib = require('../../lib');
 
 var composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || _redux.compose;
 var enhancer = composeEnhancers((0, _redux.applyMiddleware)((0, _lib.reduxLoaderMiddleware)()));
@@ -1402,10 +1379,10 @@ var reducer = (0, _redux.combineReducers)({
 var store = (0, _redux.createStore)(reducer, enhancer);
 
 exports.default = store;
-},{"redux":8,"../lib":4}],2:[function(require,module,exports) {
+},{"redux":5,"../../lib":4}],2:[function(require,module,exports) {
 'use strict';
 
-var _store = require('../store');
+var _store = require('./store');
 
 var _store2 = _interopRequireDefault(_store);
 
@@ -1416,6 +1393,9 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 var btn = document.querySelector('.button');
 var logElem = document.querySelector('.logs');
 var loading = document.querySelector('.loading');
+
+var btn2 = document.querySelector('.button2');
+var loading2 = document.querySelector('.loading2');
 
 var log = function log(action) {
   var className = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : '';
@@ -1429,15 +1409,20 @@ _store2.default.subscribe(function () {
   } else {
     loading.classList.remove('show');
   }
+
+  if (_store2.default.getState().reduxLoader.loaders.myLoader2) {
+    loading2.classList.add('show');
+  } else {
+    loading2.classList.remove('show');
+  }
 });
 
 var registerAction = {
   type: _lib.reduxLoaderActions.REGISTER_LOADER,
   payload: {
     id: 'myLoader',
-    startAction: 'SOME_ACTION_THAT_TRIGGERS_LOADING',
-    successAction: 'SUCCESS',
-    failureAction: 'FAILURE'
+    startActions: ['SOME_ACTION_THAT_TRIGGERS_LOADING', 'ANOTHER_ACTION'],
+    stopActions: ['SUCCESS', 'FAILURE']
   }
 };
 
@@ -1453,7 +1438,16 @@ var triggerAction = { type: 'SOME_ACTION_THAT_TRIGGERS_LOADING' };
 
 _store2.default.dispatch(registerAction);
 
-var triggerExample = function triggerExample() {
+_store2.default.dispatch({
+  type: _lib.reduxLoaderActions.REGISTER_LOADER,
+  payload: {
+    id: 'myLoader2',
+    startActions: ['SOME_ACTION_THAT_TRIGGERS_LOADING_2', 'ANOTHER_ACTION_2'],
+    stopActions: ['SUCCESS_2', 'FAILURE_2']
+  }
+});
+
+var triggerExample = function triggerExample(triggerAction, successAction, failureAction) {
   _store2.default.dispatch(triggerAction);
   log(triggerAction);
 
@@ -1471,9 +1465,19 @@ var triggerExample = function triggerExample() {
 };
 
 btn.onclick = function () {
-  return triggerExample();
+  return triggerExample(triggerAction, successAction, failureAction);
 };
-},{"../store":3,"../../lib":4}],36:[function(require,module,exports) {
+
+btn2.onclick = function () {
+  return triggerExample({
+    type: 'ANOTHER_ACTION_2'
+  }, {
+    type: 'SUCCESS_2'
+  }, {
+    type: 'FAILURE_2'
+  });
+};
+},{"./store":3,"../../lib":4}],35:[function(require,module,exports) {
 
 var global = (1, eval)('this');
 var OldModule = module.bundle.Module;
@@ -1495,7 +1499,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = '' || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + '60071' + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + '54545' + '/');
   ws.onmessage = function (event) {
     var data = JSON.parse(event.data);
 
@@ -1596,5 +1600,5 @@ function hmrAccept(bundle, id) {
     return hmrAccept(global.require, id);
   });
 }
-},{}]},{},[36,2])
+},{}]},{},[35,2])
 //# sourceMappingURL=/dist/basic.map

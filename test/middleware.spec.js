@@ -7,22 +7,19 @@ const INITIAL_STATE = {
     history: {
       myLoader: {
         id: 'myLoader',
-        startAction: 'DUMMY_START_ACTION',
-        successAction: 'DUMMY_SUCCESS_ACTION',
-        failureAction: 'DUMMY_FAILURE_ACTION',
+        startActions: ['DUMMY_START_ACTION'],
+        stopActions: ['DUMMY_SUCCESS_ACTION', 'DUMMY_FAILURE_ACTION'],
       },
     },
     loaders: {
       myLoader: false,
     },
     startActions: {
-      DUMMY_START_ACTION: ['myLoader'],
+      DUMMY_START_ACTION: 'myLoader',
     },
-    successActions: {
-      DUMMY_SUCCESS_ACTION: ['myLoader'],
-    },
-    failureActions: {
-      DUMMY_FAILURE_ACTION: ['myLoader'],
+    stopActions: {
+      DUMMY_SUCCESS_ACTION: 'myLoader',
+      DUMMY_FAILURE_ACTION: 'myLoader',
     },
   },
 };
@@ -60,13 +57,13 @@ it('should return start loading action', () => {
 
   const startLoadingAction = {
     type: actions.START_LOADING,
-    payload: ['myLoader'],
+    payload: 'myLoader',
   };
 
   expect(next).toHaveBeenCalledWith(startLoadingAction);
 });
 
-it('should return stop loading action', () => {
+it('should return stop loading action for success action', () => {
   const { next, invoke } = create();
 
   invoke(startAction);
@@ -74,13 +71,13 @@ it('should return stop loading action', () => {
 
   const stopLoadingAction = {
     type: actions.STOP_LOADING,
-    payload: ['myLoader'],
+    payload: 'myLoader',
   };
 
   expect(next).toHaveBeenCalledWith(stopLoadingAction);
 });
 
-it('should return stop loading action', () => {
+it('should return stop loading action for failure action', () => {
   const { next, invoke } = create();
 
   invoke(startAction);
@@ -88,7 +85,7 @@ it('should return stop loading action', () => {
 
   const stopLoadingAction = {
     type: actions.STOP_LOADING,
-    payload: ['myLoader'],
+    payload: 'myLoader',
   };
 
   expect(next).toHaveBeenCalledWith(stopLoadingAction);

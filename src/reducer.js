@@ -1,9 +1,10 @@
 import * as actions from './actions';
 
-const omit = (obj = {}, blacklist = '') =>
+const omit = (obj = {}, blacklist = []) =>
   Object.keys(obj)
-    .filter(key => blacklist !== key)
+    .filter(key => !blacklist.includes(key))
     .reduce((newObj, key) => ({ ...newObj, [key]: obj[key] }), {});
+
 
 const setLoaderIdStatus = (ids = [], status = false) =>
   ids.reduce(
@@ -14,12 +15,17 @@ const setLoaderIdStatus = (ids = [], status = false) =>
     {}
   );
 
+const spreadArrayToObject = (array, value, state) => ({
+  ...state,
+  ...setLoaderIdStatus(array, value),
+});
+
+
 const INITIAL_STATE = {
   history: {},
   loaders: {},
   startActions: {},
-  successActions: {},
-  failureActions: {},
+  stopActions: {},
 };
 
 const reducer = (state = INITIAL_STATE, action) => {
@@ -28,33 +34,8 @@ const reducer = (state = INITIAL_STATE, action) => {
       return {
         ...state,
         loaders: { ...state.loaders, [action.payload.id]: false },
-        startActions: {
-          ...state.startAction,
-          [action.payload.startAction]: [
-            ...new Set([
-              ...(state[action.payload.startAction] || []),
-              action.payload.id
-            ])
-          ],
-        },
-        successActions: {
-          ...state.successActions,
-          [action.payload.successAction]: [
-            ...new Set([
-              ...(state[action.payload.successAction] || []),
-              action.payload.id
-            ])
-          ],
-        },
-        failureActions: {
-          ...state.failureActions,
-          [action.payload.failureAction]: [
-            ...new Set([
-              ...(state[action.payload.failureAction] || []),
-              action.payload.id
-            ])
-          ],
-        },
+        startActions: spreadArrayToObject(action.payload.startActions, action.payload.id, state.startActions),
+        stopActions: spreadArrayToObject(action.payload.stopActions, action.payload.id, state.stopActions),
         history: {
           ...state.history,
           [action.payload.id]: action.payload,
@@ -67,26 +48,22 @@ const reducer = (state = INITIAL_STATE, action) => {
         loaders: omit(state.loaders, action.payload),
         startActions: omit(
           state.startActions,
-          state.history[action.payload].startAction
+          state.history[action.payload].startActions
         ),
-        successActions: omit(
-          state.successActions,
-          state.history[action.payload].successAction
-        ),
-        failureActions: omit(
-          state.failureActions,
-          state.history[action.payload].failureAction
+        stopActions: omit(
+          state.stopActions,
+          state.history[action.payload].stopActions
         ),
       };
     case actions.START_LOADING:
       return {
         ...state,
-        loaders: { ...state.loaders, ...setLoaderIdStatus(action.payload, true) },
+        loaders: { ...state.loaders, [action.payload]: true },
       };
     case actions.STOP_LOADING:
       return {
         ...state,
-        loaders: { ...state.loaders, ...setLoaderIdStatus(action.payload, false) },
+        loaders: { ...state.loaders, [action.payload]: false },
       };
     default:
       return state;

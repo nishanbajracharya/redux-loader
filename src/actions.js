@@ -3,28 +3,26 @@ export const START_LOADING = '@@START_LOADING';
 export const REGISTER_LOADER = '@@REGISTER_LOADER';
 export const UNREGISTER_LOADER = '@@UNREGISTER_LOADER';
 
-export const stopLoading = ids => ({
+export const stopLoading = id => ({
   type: STOP_LOADING,
-  payload: ids,
+  payload: id,
 });
 
-export const startLoading = ids => ({
+export const startLoading = id => ({
   type: START_LOADING,
-  payload: ids,
+  payload: id,
 });
 
 export const registerLoader = ({
   id,
-  startAction,
-  successAction,
-  failureAction,
+  startActions,
+  stopActions,
 }) => ({
   type: REGISTER_LOADER,
   payload: {
     id,
-    startAction,
-    successAction,
-    failureAction,
+    startActions,
+    stopActions,
   },
 });
 

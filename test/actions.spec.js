@@ -5,17 +5,15 @@ it('should return register action', () => {
     type: actions.REGISTER_LOADER,
     payload: {
       id: 'myLoader',
-      startAction: 'DUMMY_START_ACTION',
-      successAction: 'DUMMY_SUCCESS_ACTION',
-      failureAction: 'DUMMY_FAILURE_ACTION',
+      startActions: 'DUMMY_START_ACTION',
+      stopActions: 'DUMMY_SUCCESS_ACTION',
     },
   };
 
   const action = actions.registerLoader({
     id: 'myLoader',
-    startAction: 'DUMMY_START_ACTION',
-    successAction: 'DUMMY_SUCCESS_ACTION',
-    failureAction: 'DUMMY_FAILURE_ACTION',
+    startActions: 'DUMMY_START_ACTION',
+    stopActions: 'DUMMY_SUCCESS_ACTION',
   });
 
   expect(action).toEqual(expectedAction);

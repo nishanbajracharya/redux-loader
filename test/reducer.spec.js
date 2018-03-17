@@ -4,20 +4,18 @@ import * as actions from '../src/actions';
 const initialState = {
   history: {},
   loaders: {},
+  stopActions: {},
   startActions: {},
-  successActions: {},
-  failureActions: {},
 };
 
 const registerAction = actions.registerLoader({
   id: 'myLoader',
-  startAction: 'DUMMY_START_ACTION',
-  successAction: 'DUMMY_SUCCESS_ACTION',
-  failureAction: 'DUMMY_FAILURE_ACTION',
+  startActions: ['DUMMY_START_ACTION'],
+  stopActions: ['DUMMY_SUCCESS_ACTION', 'DUMMY_FAILURE_ACTION'],
 });
 
-const stopLoadingAction = actions.stopLoading(['myLoader']);
-const startLoadingAction = actions.startLoading(['myLoader']);
+const stopLoadingAction = actions.stopLoading('myLoader');
+const startLoadingAction = actions.startLoading('myLoader');
 const unregisterAction = actions.unregisterLoader('myLoader');
 
 it('should return new state with registered loader', () => {
@@ -27,22 +25,19 @@ it('should return new state with registered loader', () => {
     history: {
       myLoader: {
         id: 'myLoader',
-        startAction: 'DUMMY_START_ACTION',
-        successAction: 'DUMMY_SUCCESS_ACTION',
-        failureAction: 'DUMMY_FAILURE_ACTION',
+        startActions: ['DUMMY_START_ACTION'],
+        stopActions: ['DUMMY_SUCCESS_ACTION', 'DUMMY_FAILURE_ACTION'],
       },
     },
     loaders: {
       myLoader: false,
     },
     startActions: {
-      DUMMY_START_ACTION: ['myLoader'],
+      DUMMY_START_ACTION: 'myLoader',
     },
-    successActions: {
-      DUMMY_SUCCESS_ACTION: ['myLoader'],
-    },
-    failureActions: {
-      DUMMY_FAILURE_ACTION: ['myLoader'],
+    stopActions: {
+      DUMMY_SUCCESS_ACTION: 'myLoader',
+      DUMMY_FAILURE_ACTION: 'myLoader',
     },
   };
 
@@ -57,22 +52,19 @@ it('should return new state with loading started', () => {
     history: {
       myLoader: {
         id: 'myLoader',
-        startAction: 'DUMMY_START_ACTION',
-        successAction: 'DUMMY_SUCCESS_ACTION',
-        failureAction: 'DUMMY_FAILURE_ACTION',
+        startActions: ['DUMMY_START_ACTION'],
+        stopActions: ['DUMMY_SUCCESS_ACTION', 'DUMMY_FAILURE_ACTION'],
       },
     },
     loaders: {
       myLoader: true,
     },
     startActions: {
-      DUMMY_START_ACTION: ['myLoader'],
+      DUMMY_START_ACTION: 'myLoader',
     },
-    successActions: {
-      DUMMY_SUCCESS_ACTION: ['myLoader'],
-    },
-    failureActions: {
-      DUMMY_FAILURE_ACTION: ['myLoader'],
+    stopActions: {
+      DUMMY_SUCCESS_ACTION: 'myLoader',
+      DUMMY_FAILURE_ACTION: 'myLoader',
     },
   };
 
@@ -88,22 +80,19 @@ it('should return new state with loading stopped', () => {
     history: {
       myLoader: {
         id: 'myLoader',
-        startAction: 'DUMMY_START_ACTION',
-        successAction: 'DUMMY_SUCCESS_ACTION',
-        failureAction: 'DUMMY_FAILURE_ACTION',
+        startActions: ['DUMMY_START_ACTION'],
+        stopActions: ['DUMMY_SUCCESS_ACTION', 'DUMMY_FAILURE_ACTION'],
       },
     },
     loaders: {
       myLoader: false,
     },
     startActions: {
-      DUMMY_START_ACTION: ['myLoader'],
+      DUMMY_START_ACTION: 'myLoader',
     },
-    successActions: {
-      DUMMY_SUCCESS_ACTION: ['myLoader'],
-    },
-    failureActions: {
-      DUMMY_FAILURE_ACTION: ['myLoader'],
+    stopActions: {
+      DUMMY_SUCCESS_ACTION: 'myLoader',
+      DUMMY_FAILURE_ACTION: 'myLoader',
     },
   };
 
