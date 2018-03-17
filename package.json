@@ -1,0 +1,23 @@
+{
+  "name": "redux-loader",
+  "version": "0.1.0",
+  "description": "A redux middleware to handle loading states triggered through start, success and failure actions.",
+  "main": "src/index.js",
+  "scripts": {
+    "test": "jest"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/nishanbajracharya/redux-loader.git"
+  },
+  "keywords": [
+    "redux",
+    "middleware"
+  ],
+  "author": "Nishan Bajracharya <nisbaj11@gmail.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/nishanbajracharya/redux-loader/issues"
+  },
+  "homepage": "https://github.com/nishanbajracharya/redux-loader#readme"
+}
