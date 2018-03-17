@@ -2,11 +2,12 @@
   "name": "redux-loader",
   "version": "0.1.0",
   "description": "A redux middleware to handle loading states triggered through start, success and failure actions.",
-  "main": "src/index.js",
+  "main": "lib/index.js",
   "scripts": {
     "test": "jest",
     "lint": "eslint src/",
-    "prebuild": "del lib",
+    "clean": "del lib",
+    "prebuild": "npm run clean",
     "build": "babel src -d lib",
     "lint:fix": "eslint --fix src/"
   },
