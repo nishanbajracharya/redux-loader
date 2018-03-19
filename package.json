@@ -38,8 +38,8 @@
     "redux": "^3.7.2"
   },
   "dependencies": {
-    "actions": "./lib/actions",
-    "reducer": "./lib/reducer",
-    "middleware": "./lib/middleware"
+    "actions": "./actions",
+    "reducer": "./reducer",
+    "middleware": "./middleware"
   }
 }
