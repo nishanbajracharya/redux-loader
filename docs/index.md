@@ -128,7 +128,7 @@ reduxLoaderActions.stopLoading('loaderName');
 ## Reducer
 
 This section describes the redux state registered by `redux-loader`.
-![Redux Loader State](/example-state.png "Redux Loader State")
+![Redux Loader State](reducer.png "Redux Loader State")
 
 **history**
 
