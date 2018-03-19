@@ -38,8 +38,5 @@
     "redux": "^3.7.2"
   },
   "dependencies": {
-    "actions": "./actions",
-    "reducer": "./reducer",
-    "middleware": "./middleware"
   }
 }
