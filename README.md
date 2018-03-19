@@ -73,10 +73,10 @@ unregisterLoader(id: String): Action
 Start by importing the action creators.
 
 ```js
-import reduxLoaderActions from 'redux-loader';
+import { reduxLoaderActions } from 'redux-loader';
 ```
 
-Next register a loader by applying an unique `id`, start actions and stop actions.
+Next register a loader by supplying a unique id, start actions and stop actions.
 
 ```js
 const registerAction = reduxLoaderActions.registerLoader({
@@ -119,7 +119,7 @@ const EnhancedComponent = connect(mapStateToProps)(Component);
 You can also manually trigger loading using `startLoading` and `stopLoading` actions.
 
 ```js
-import reduxLoaderActions from 'redux-loader';
+import { reduxLoaderActions } from 'redux-loader';
 
 // Trigger loading of myLoader
 store.dispatch(reduxLoaderActions.startLoading('myLoader'));
