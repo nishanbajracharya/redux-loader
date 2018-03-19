@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.org/nishanbajracharya/redux-loader.svg?branch=master)](https://travis-ci.org/nishanbajracharya/redux-loader)
+
 # Redux Loader
 A redux middleware to handle loading states triggered through start and stop actions.
 
