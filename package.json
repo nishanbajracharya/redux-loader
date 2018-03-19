@@ -32,7 +32,9 @@
     "del-cli": "^1.1.0",
     "eslint": "^4.19.0",
     "eslint-plugin-react": "^7.7.0",
-    "jest": "^22.4.2",
+    "jest": "^22.4.2"
+  },
+  "peerDependencies": {
     "redux": "^3.7.2"
   },
   "dependencies": {}
