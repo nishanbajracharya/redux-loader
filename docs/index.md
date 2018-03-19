@@ -127,6 +127,21 @@ reduxLoaderActions.stopLoading('loaderName');
 
 ## Reducer
 
+Importing the reducer
+```js
+import { reduxLoaderReducer } from 'redux-loader';
+```
+
+Using the reducer
+```js
+const reducer = combineReducers({
+  reduxLoader: reduxLoaderReducer,
+  // other reducers
+});
+
+const store = createStore(reducer, ...);
+```
+
 This section describes the redux state registered by `redux-loader`.
 ![Redux Loader State](reducer.png "Redux Loader State")
 
@@ -147,4 +162,40 @@ Stores all the registered start action types. Each key represents the start acti
 Stores all the registered stop action types. Each key represents the stop action and value represents the loader that registered it. Values are replaced if a new loader registers the same stop action.
 
 ## Middleware
-In Progress
+
+Importing the middleware
+
+```js
+import { reduxLoaderMiddleware } from 'redux-loader';
+```
+
+Using the middleware
+
+```js
+//store.js
+
+import { reduxLoaderReducer, reduxLoaderMiddleware } from 'redux-loader';
+import { applyMiddleware, createStore, compose, combineReducers } from 'redux';
+
+const loaderMiddleware = reduxLoaderMiddleware();
+const enhancer = compose(applyMiddleware(loaderMiddleware));
+
+const reducer = combineReducers({
+  reduxLoader: reduxLoaderReducer,
+  // other reducers
+});
+
+const store = createStore(reducer, enhancer);
+```
+
+The `reduxLoaderMiddleware` function accepts a key that should be the same as the key used to add `reduxLoaderReducer` into `combineReducers`.
+
+```js
+const loaderMiddleware = reduxLoaderMiddleware('myCustomLoader');
+// Uses 'reduxLoader' by default
+
+const reducer = combineReducers({
+  myCustomLoader: reduxLoaderReducer,
+  // other reducers
+});
+```

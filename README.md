@@ -36,6 +36,7 @@ The `reduxLoaderMiddleware` function accepts a key that should be the same as th
 
 ```js
 const loaderMiddleware = reduxLoaderMiddleware('myCustomLoader');
+// Uses 'reduxLoader' by default
 
 const reducer = combineReducers({
   myCustomLoader: reduxLoaderReducer,
@@ -93,7 +94,7 @@ store.dispatch(registerAction);
 Your redux state will look something like this.
 ![Redux Loader State](example-state.png "Redux Loader State")
 
-That's it. Now whenever a start action, eg. `TRIGGER_LOADING_ACTION` is dispatched, your registered loader, eg. `myLoader` will be set to `true`. Similarly, when either `SUCCESS_ACTION` or `FAILURE_ACTION` is dispatched, `myLoader` will be set to false.
+That's it. Now whenever a start action, eg. `TRIGGER_LOADING_ACTION` is dispatched, your registered loader, eg. `myLoader` will be set to `true`. Similarly, when either `SUCCESS_ACTION` or `FAILURE_ACTION` is dispatched, `myLoader` will be set to `false`.
 
 You can subscribe to the loader using redux's `subscribe` method or using [react-redux](https://github.com/reactjs/react-redux).
 
