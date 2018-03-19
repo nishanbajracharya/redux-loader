@@ -124,3 +124,24 @@ Example
 ```js
 reduxLoaderActions.stopLoading('loaderName');
 ```
+
+## Reducer
+
+This section describes the redux state registered by `redux-loader`.
+![Redux Loader State](reducer.png "Redux Loader State")
+
+**history**
+
+Stores the dispatched `@REGISTER_LOADER` action payload as is, with the id as the key.
+
+**loaders**
+
+Stores the loader ids as key and `bool` as values. This is the main state used to enable or disable loading values. `@@START_LOADING`, `@@STOP_LOADING`, and `@@UNREGISTER_LOADING` actions reference ids from this section.
+
+**startActions**
+
+Stores all the registered start action types. Each key represents the start action and value represents the loader that registered it. Values are replaced if a new loader registers the same start action.
+
+**stopActions**
+
+Stores all the registered stop action types. Each key represents the stop action and value represents the loader that registered it. Values are replaced if a new loader registers the same stop action.
