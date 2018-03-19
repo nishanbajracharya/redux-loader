@@ -25,7 +25,7 @@ Used to register a loader into the redux store.
   payload: {
     id: 'loaderName',
     startActions: ['START_ACTION'],
-    stopActions: ['SUCCESS_ACTION', 'FAILUER_ACTION']
+    stopActions: ['SUCCESS_ACTION', 'FAILURE_ACTION']
   }
 }
 ```
@@ -82,7 +82,7 @@ Example
 reduxLoaderActions.registerLoader({
   id: 'loaderName',
   startActions: ['START_ACTION'],
-  stopActions: ['SUCCESS_ACTION', 'FAILUER_ACTION']
+  stopActions: ['SUCCESS_ACTION', 'FAILURE_ACTION']
 });
 ```
 
