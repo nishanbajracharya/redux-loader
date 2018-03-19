@@ -1,5 +1,5 @@
 [![Build Status](https://travis-ci.org/nishanbajracharya/redux-loader.svg?branch=master)](https://travis-ci.org/nishanbajracharya/redux-loader)
-[![GitHub package version](https://img.shields.io/github/package-json/v/badges/shields.svg)](https://github.com/nishanbajracharya/redux-loader)
+[![Package version](https://img.shields.io/badge/version-0.1.3-green.svg)](https://github.com/nishanbajracharya/redux-loader)
 
 
 # Redux Loader
