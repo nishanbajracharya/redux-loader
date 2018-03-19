@@ -178,7 +178,11 @@ import { reduxLoaderReducer, reduxLoaderMiddleware } from 'redux-loader';
 import { applyMiddleware, createStore, compose, combineReducers } from 'redux';
 
 const loaderMiddleware = reduxLoaderMiddleware();
-const enhancer = compose(applyMiddleware(loaderMiddleware));
+const middlewares = [
+  loaderMiddleware,
+  // other middlewares
+]
+const enhancer = compose(applyMiddleware(...middlewares));
 
 const reducer = combineReducers({
   reduxLoader: reduxLoaderReducer,
