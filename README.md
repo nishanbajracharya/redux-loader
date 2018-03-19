@@ -1,4 +1,4 @@
-# redux-loader
+# Redux Loader
 A redux middleware to handle loading states triggered through start and stop actions.
 
 ## Why would I need this?
@@ -8,7 +8,7 @@ Ever wanted a loading indicator while you are fetching a large amount of data. E
 The first step is to add `redux-loader` into your project.
 
 ```
-npm install nishanbajracharya/redux-loader
+npm install --save nishanbajracharya/redux-loader
 ```
 
 > Note: The package itself has no dependencies but would be useless without [Redux](https://redux.js.org/).
@@ -127,3 +127,25 @@ store.dispatch(startLoading('myLoader'));
 // Stop loading of myLoader
 store.dispatch(stopLoading('myLoader'));
 ```
+
+## Documentation
+In Progress
+
+## Contributing
+To contribute, follow one of the two options:
+
+- **Open an Issue**
+
+  Open an issue detailing:
+  1. What the issue is
+  2. Steps to reproduce
+  3. Possible solutions
+
+  Note: These details are recommended but are entirely optional.
+
+- **Send a Pull Request**
+
+  Fork this project and send a pull request to the `master` branch.
+
+## License
+MIT
