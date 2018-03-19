@@ -1,2 +1,129 @@
 # redux-loader
-A redux middleware to handle loading states triggered through start, success and failure actions.
+A redux middleware to handle loading states triggered through start and stop actions.
+
+## Why would I need this?
+Ever wanted a loading indicator while you are fetching a large amount of data. Ever wanted to block a submit button from being clicking again after you have submitted a form. Then this is the solution for you. Instead of going through the hassle of maintaining loading states for your buttons and containers, `redux-loader` does it for you.
+
+## Getting started
+The first step is to add `redux-loader` into your project.
+
+```
+npm install nishanbajracharya/redux-loader
+```
+
+> Note: The package itself has no dependencies but would be useless without [Redux](https://redux.js.org/).
+
+The next step is to register the middleware in the redux store.
+
+```js
+//store.js
+
+import { reduxLoaderReducer, reduxLoaderMiddleware } from 'redux-loader';
+import { applyMiddleware, createStore, compose, combineReducers } from 'redux';
+
+const loaderMiddleware = reduxLoaderMiddleware();
+const enhancer = compose(applyMiddleware(loaderMiddleware));
+
+const reducer = combineReducers({
+  reduxLoader: reduxLoaderReducer,
+  // other reducers
+});
+
+const store = createStore(reducer, enhancer);
+```
+
+The `reduxLoaderMiddleware` function accepts a key that should be the same as the key used to add `reduxLoaderReducer` into `combineReducers`.
+
+```js
+const loaderMiddleware = reduxLoaderMiddleware('myCustomLoader');
+
+const reducer = combineReducers({
+  myCustomLoader: reduxLoaderReducer,
+  // other reducers
+});
+```
+
+## Usage
+Redux loader provides a bunch of actions that can be used to manage the loading states.
+
+```js
+STOP_LOADING = '@@STOP_LOADING'
+START_LOADING = '@@START_LOADING'
+REGISTER_LOADER = '@@REGISTER_LOADER'
+UNREGISTER_LOADER = '@@UNREGISTER_LOADER'
+```
+> You'll only really need `REGISTER_LOADER` and `UNREGISTER_LOADER` but other actions can also be used.
+
+Also action creators.
+
+```js
+registerLoader({
+  id: String,
+  stopActions: Array,
+  startActions: Array
+}): Action
+
+startLoading(id: String): Action
+
+stopLoading(id: String): Action
+
+unregisterLoader(id: String): Action
+```
+
+Start by importing the action creators.
+
+```js
+import { registerLoader, unregisterLoader } from 'redux-loader';
+```
+
+Next register a loader by applying an unique `id`, start actions and stop actions.
+
+```js
+const registerAction = registerLoader({
+  id: 'myLoader',
+  startActions: ['TRIGGER_LOADING_ACTION'],
+  stopActions: ['SUCCESS_ACTION', 'FAILURE_ACTION'],
+});
+
+const unregisterAction = unregisterLoader('myLoader');
+
+// Register a loader
+store.dispatch(registerAction);
+```
+Your redux state will look something like this.
+![Redux Loader State](example-state.png "Redux Loader State")
+
+That's it. Now whenever a start action, eg. `TRIGGER_LOADING_ACTION` is dispatched, your registered loader, eg. `myLoader` will be set to `true`. Similarly, when either `SUCCESS_ACTION` or `FAILURE_ACTION` is dispatched, `myLoader` will be set to false.
+
+You can subscribe to the loader using redux's `subscribe` method or using [react-redux](https://github.com/reactjs/react-redux).
+
+```js
+import { connect } from 'react-redux';
+
+const Component = ({ myLoader: false }) =>
+  <div>
+    {/* Other elements */}
+    {
+      myLoader && <span>Loading...</span>
+    }
+  </div>;
+
+const mapStateToProps = state => ({
+  myLoader: state.reduxLoader.loaders.myLoader,
+  // Other props
+});
+
+const EnhancedComponent = connect(mapStateToProps)(Component);
+```
+
+You can also manually trigger loading using `startLoading` and `stopLoading` actions.
+
+```js
+import { startLoading, stopLoading } from 'redux-loader';
+
+// Trigger loading of myLoader
+store.dispatch(startLoading('myLoader'));
+
+// Stop loading of myLoader
+store.dispatch(stopLoading('myLoader'));
+```
