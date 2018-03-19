@@ -151,7 +151,7 @@ Stores the dispatched `@REGISTER_LOADER` action payload as is, with the id as th
 
 **loaders**
 
-Stores the loader ids as key and `bool` as values. This is the main state used to enable or disable loading values. `@@START_LOADING`, `@@STOP_LOADING`, and `@@UNREGISTER_LOADING` actions reference ids from this section.
+Stores the loader ids as key and `bool` as values. This is the main state used to enable or disable loading values. `@@START_LOADING`, `@@STOP_LOADING`, and `@@UNREGISTER_LOADER` actions reference ids from this section.
 
 **startActions**
 
