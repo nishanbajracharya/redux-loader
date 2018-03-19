@@ -129,7 +129,7 @@ store.dispatch(reduxLoaderActions.stopLoading('myLoader'));
 ```
 
 ## Documentation
-In Progress
+Read the docs using [this link](https://nishanbajracharya.github.io/redux-loader/).
 
 ## Contributing
 To contribute, follow one of the two options:

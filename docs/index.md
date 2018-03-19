@@ -145,3 +145,6 @@ Stores all the registered start action types. Each key represents the start acti
 **stopActions**
 
 Stores all the registered stop action types. Each key represents the stop action and value represents the loader that registered it. Values are replaced if a new loader registers the same stop action.
+
+## Middleware
+In Progress
