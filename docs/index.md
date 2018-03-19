@@ -2,8 +2,13 @@
 The document will walk you through the actions, reducer and middleware that comprises `redux-loader`.
 
 ## Actions
-Redux Loader provides multiple actions as follows:
 
+Importing into a project.
+```js
+import { reduxLoaderActions } from 'redux-loader';
+```
+
+Redux Loader provides multiple actions as follows:
 ```js
 STOP_LOADING: '@@STOP_LOADING'
 START_LOADING: '@@START_LOADING'
@@ -14,7 +19,6 @@ UNREGISTER_LOADER: '@@UNREGISTER_LOADER'
 **REGISTER_LOADER**
 
 Used to register a loader into the redux store.
-
 ```js
 {
   type: '@@REGISTER_LOADER',
@@ -57,4 +61,66 @@ Used to disable loading state.
   type: '@@STOP_LOADING',
   payload: 'loaderName'
 }
+```
+
+## Action Creators
+
+**registerLoader**
+
+```js
+registerLoader({
+  id: String,
+  startActions: Array,
+  stopActions: Array
+})
+```
+
+Returns `@@REGISTER_LOADER`.
+
+Example
+```js
+reduxLoaderActions.registerLoader({
+  id: 'loaderName',
+  startActions: ['START_ACTION'],
+  stopActions: ['SUCCESS_ACTION', 'FAILUER_ACTION']
+});
+```
+
+**unregisterLoader**
+
+```js
+unregisterLoader(id: String)
+```
+
+Returns `@@UNREGISTER_LOADER`.
+
+Example
+```js
+reduxLoaderActions.unregisterLoader('loaderName');
+```
+
+**startLoading**
+
+```js
+startLoading(id: String)
+```
+
+Returns `@@START_LOADING`.
+
+Example
+```js
+reduxLoaderActions.startLoading('loaderName');
+```
+
+**stopLoading**
+
+```js
+stopLoading(id: String)
+```
+
+Returns `@@STOP_LOADING`.
+
+Example
+```js
+reduxLoaderActions.stopLoading('loaderName');
 ```
