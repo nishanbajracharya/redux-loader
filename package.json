@@ -37,5 +37,9 @@
   "peerDependencies": {
     "redux": "^3.7.2"
   },
-  "dependencies": {}
+  "dependencies": {
+    "actions": "./lib/actions",
+    "reducer": "./lib/reducer",
+    "middleware": "./lib/middleware"
+  }
 }
