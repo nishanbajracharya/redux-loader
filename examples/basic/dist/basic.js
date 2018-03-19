@@ -71,7 +71,7 @@ require = (function (modules, cache, entry) {
 
   // Override the current require with this new one
   return newRequire;
-})({26:[function(require,module,exports) {
+})({27:[function(require,module,exports) {
 var global = (1,eval)("this");
 'use strict';
 
@@ -82,7 +82,7 @@ Object.defineProperty(exports, "__esModule", {
 var freeGlobal = typeof global == 'object' && global && global.Object === Object && global;
 
 exports.default = freeGlobal;
-},{}],25:[function(require,module,exports) {
+},{}],26:[function(require,module,exports) {
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -102,7 +102,7 @@ var freeSelf = typeof self == 'object' && self && self.Object === Object && self
 var root = _freeGlobal2.default || freeSelf || Function('return this')();
 
 exports.default = root;
-},{"./_freeGlobal.js":26}],21:[function(require,module,exports) {
+},{"./_freeGlobal.js":27}],22:[function(require,module,exports) {
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -119,7 +119,7 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 var Symbol = _root2.default.Symbol;
 
 exports.default = Symbol;
-},{"./_root.js":25}],22:[function(require,module,exports) {
+},{"./_root.js":26}],23:[function(require,module,exports) {
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -176,7 +176,7 @@ function getRawTag(value) {
 }
 
 exports.default = getRawTag;
-},{"./_Symbol.js":21}],23:[function(require,module,exports) {
+},{"./_Symbol.js":22}],24:[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -204,7 +204,7 @@ function objectToString(value) {
 }
 
 exports.default = objectToString;
-},{}],18:[function(require,module,exports) {
+},{}],19:[function(require,module,exports) {
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -247,7 +247,7 @@ function baseGetTag(value) {
 }
 
 exports.default = baseGetTag;
-},{"./_Symbol.js":21,"./_getRawTag.js":22,"./_objectToString.js":23}],24:[function(require,module,exports) {
+},{"./_Symbol.js":22,"./_getRawTag.js":23,"./_objectToString.js":24}],25:[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -268,7 +268,7 @@ function overArg(func, transform) {
 }
 
 exports.default = overArg;
-},{}],19:[function(require,module,exports) {
+},{}],20:[function(require,module,exports) {
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -285,7 +285,7 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 var getPrototype = (0, _overArg2.default)(Object.getPrototypeOf, Object);
 
 exports.default = getPrototype;
-},{"./_overArg.js":24}],20:[function(require,module,exports) {
+},{"./_overArg.js":25}],21:[function(require,module,exports) {
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -320,7 +320,7 @@ function isObjectLike(value) {
 }
 
 exports.default = isObjectLike;
-},{}],17:[function(require,module,exports) {
+},{}],18:[function(require,module,exports) {
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -398,7 +398,7 @@ function isPlainObject(value) {
 }
 
 exports.default = isPlainObject;
-},{"./_baseGetTag.js":18,"./_getPrototype.js":19,"./isObjectLike.js":20}],16:[function(require,module,exports) {
+},{"./_baseGetTag.js":19,"./_getPrototype.js":20,"./isObjectLike.js":21}],17:[function(require,module,exports) {
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -422,7 +422,7 @@ function symbolObservablePonyfill(root) {
 
 	return result;
 };
-},{}],15:[function(require,module,exports) {
+},{}],16:[function(require,module,exports) {
 var global = (1,eval)("this");
 'use strict';
 
@@ -453,7 +453,7 @@ if (typeof self !== 'undefined') {
 
 var result = (0, _ponyfill2.default)(root);
 exports.default = result;
-},{"./ponyfill.js":16}],9:[function(require,module,exports) {
+},{"./ponyfill.js":17}],10:[function(require,module,exports) {
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -717,7 +717,7 @@ var ActionTypes = exports.ActionTypes = {
     replaceReducer: replaceReducer
   }, _ref2[_symbolObservable2.default] = observable, _ref2;
 }
-},{"lodash-es/isPlainObject":17,"symbol-observable":15}],14:[function(require,module,exports) {
+},{"lodash-es/isPlainObject":18,"symbol-observable":16}],15:[function(require,module,exports) {
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -745,7 +745,7 @@ function warning(message) {
   } catch (e) {}
   /* eslint-enable no-empty */
 }
-},{}],10:[function(require,module,exports) {
+},{}],11:[function(require,module,exports) {
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -891,7 +891,7 @@ function combineReducers(reducers) {
     return hasChanged ? nextState : state;
   };
 }
-},{"./createStore":9,"lodash-es/isPlainObject":17,"./utils/warning":14}],11:[function(require,module,exports) {
+},{"./createStore":10,"lodash-es/isPlainObject":18,"./utils/warning":15}],12:[function(require,module,exports) {
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -945,7 +945,7 @@ function bindActionCreators(actionCreators, dispatch) {
   }
   return boundActionCreators;
 }
-},{}],13:[function(require,module,exports) {
+},{}],14:[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -984,7 +984,7 @@ function compose() {
     };
   });
 }
-},{}],12:[function(require,module,exports) {
+},{}],13:[function(require,module,exports) {
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -1052,7 +1052,7 @@ function applyMiddleware() {
     };
   };
 }
-},{"./compose":13}],5:[function(require,module,exports) {
+},{"./compose":14}],5:[function(require,module,exports) {
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -1101,7 +1101,7 @@ exports.combineReducers = _combineReducers2.default;
 exports.bindActionCreators = _bindActionCreators2.default;
 exports.applyMiddleware = _applyMiddleware2.default;
 exports.compose = _compose2.default;
-},{"./createStore":9,"./combineReducers":10,"./bindActionCreators":11,"./applyMiddleware":12,"./compose":13,"./utils/warning":14}],8:[function(require,module,exports) {
+},{"./createStore":10,"./combineReducers":11,"./bindActionCreators":12,"./applyMiddleware":13,"./compose":14,"./utils/warning":15}],6:[function(require,module,exports) {
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -1146,7 +1146,21 @@ var unregisterLoader = exports.unregisterLoader = function unregisterLoader(id) 
     payload: id
   };
 };
-},{}],6:[function(require,module,exports) {
+
+exports.default = {
+  // Actions
+  STOP_LOADING: STOP_LOADING,
+  START_LOADING: START_LOADING,
+  REGISTER_LOADER: REGISTER_LOADER,
+  UNREGISTER_LOADER: UNREGISTER_LOADER,
+
+  // Action creators
+  stopLoading: stopLoading,
+  startLoading: startLoading,
+  registerLoader: registerLoader,
+  unregisterLoader: unregisterLoader
+};
+},{}],7:[function(require,module,exports) {
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -1165,18 +1179,10 @@ var _extends = Object.assign || function (target) {
 
 var _actions = require('./actions');
 
-var actions = _interopRequireWildcard(_actions);
+var _actions2 = _interopRequireDefault(_actions);
 
-function _interopRequireWildcard(obj) {
-  if (obj && obj.__esModule) {
-    return obj;
-  } else {
-    var newObj = {};if (obj != null) {
-      for (var key in obj) {
-        if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key];
-      }
-    }newObj.default = obj;return newObj;
-  }
+function _interopRequireDefault(obj) {
+  return obj && obj.__esModule ? obj : { default: obj };
 }
 
 function _defineProperty(obj, key, value) {
@@ -1217,25 +1223,25 @@ var reducer = function reducer() {
   var action = arguments[1];
 
   switch (action.type) {
-    case actions.REGISTER_LOADER:
+    case _actions2.default.REGISTER_LOADER:
       return _extends({}, state, {
         loaders: _extends({}, state.loaders, _defineProperty({}, action.payload.id, false)),
         startActions: _extends({}, state.startActions, reduceArrayToObjectValue(action.payload.startActions, action.payload.id)),
         stopActions: _extends({}, state.stopActions, reduceArrayToObjectValue(action.payload.stopActions, action.payload.id)),
         history: _extends({}, state.history, _defineProperty({}, action.payload.id, action.payload))
       });
-    case actions.UNREGISTER_LOADER:
+    case _actions2.default.UNREGISTER_LOADER:
       return _extends({}, state, {
         history: omit(state.history, action.payload),
         loaders: omit(state.loaders, action.payload),
         startActions: omit(state.startActions, state.history[action.payload].startActions),
         stopActions: omit(state.stopActions, state.history[action.payload].stopActions)
       });
-    case actions.START_LOADING:
+    case _actions2.default.START_LOADING:
       return _extends({}, state, {
         loaders: _extends({}, state.loaders, _defineProperty({}, action.payload, true))
       });
-    case actions.STOP_LOADING:
+    case _actions2.default.STOP_LOADING:
       return _extends({}, state, {
         loaders: _extends({}, state.loaders, _defineProperty({}, action.payload, false))
       });
@@ -1245,7 +1251,7 @@ var reducer = function reducer() {
 };
 
 exports.default = reducer;
-},{"./actions":8}],7:[function(require,module,exports) {
+},{"./actions":6}],8:[function(require,module,exports) {
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -1254,18 +1260,10 @@ Object.defineProperty(exports, "__esModule", {
 
 var _actions = require('./actions');
 
-var actions = _interopRequireWildcard(_actions);
+var _actions2 = _interopRequireDefault(_actions);
 
-function _interopRequireWildcard(obj) {
-  if (obj && obj.__esModule) {
-    return obj;
-  } else {
-    var newObj = {};if (obj != null) {
-      for (var key in obj) {
-        if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key];
-      }
-    }newObj.default = obj;return newObj;
-  }
+function _interopRequireDefault(obj) {
+  return obj && obj.__esModule ? obj : { default: obj };
 }
 
 var DEFAULT_REDUCER = 'reduxLoader';
@@ -1290,7 +1288,7 @@ var middleware = function middleware() {
             var id = startActions[action.type];
 
             return next({
-              type: actions.START_LOADING,
+              type: _actions2.default.START_LOADING,
               payload: id
             });
           }
@@ -1299,7 +1297,7 @@ var middleware = function middleware() {
             var _id = stopActions[action.type];
 
             return next({
-              type: actions.STOP_LOADING,
+              type: _actions2.default.STOP_LOADING,
               payload: _id
             });
           }
@@ -1314,62 +1312,35 @@ var middleware = function middleware() {
 };
 
 exports.default = middleware;
-},{"./actions":8}],4:[function(require,module,exports) {
+},{"./actions":6}],4:[function(require,module,exports) {
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.middleware = exports.reducer = exports.actions = exports.reduxLoaderMiddleware = exports.reduxLoaderReducer = exports.reduxLoaderActions = undefined;
+exports.reduxLoaderMiddleware = exports.reduxLoaderReducer = exports.reduxLoaderActions = undefined;
 
 var _reducer = require('./reducer');
-
-Object.defineProperty(exports, 'reducer', {
-  enumerable: true,
-  get: function get() {
-    return _interopRequireDefault(_reducer).default;
-  }
-});
-
-var _middleware = require('./middleware');
-
-Object.defineProperty(exports, 'middleware', {
-  enumerable: true,
-  get: function get() {
-    return _interopRequireDefault(_middleware).default;
-  }
-});
 
 var _reducer2 = _interopRequireDefault(_reducer);
 
 var _actions = require('./actions');
 
-var reduxLoaderActions = _interopRequireWildcard(_actions);
+var _actions2 = _interopRequireDefault(_actions);
+
+var _middleware = require('./middleware');
 
 var _middleware2 = _interopRequireDefault(_middleware);
-
-function _interopRequireWildcard(obj) {
-  if (obj && obj.__esModule) {
-    return obj;
-  } else {
-    var newObj = {};if (obj != null) {
-      for (var key in obj) {
-        if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key];
-      }
-    }newObj.default = obj;return newObj;
-  }
-}
 
 function _interopRequireDefault(obj) {
   return obj && obj.__esModule ? obj : { default: obj };
 }
 
-exports.reduxLoaderActions = reduxLoaderActions;
+exports.reduxLoaderActions = _actions2.default;
 exports.reduxLoaderReducer = _reducer2.default;
 exports.reduxLoaderMiddleware = _middleware2.default;
-exports.default = _middleware2.default;
-exports.actions = reduxLoaderActions;
-},{"./reducer":6,"./middleware":7,"./actions":8}],3:[function(require,module,exports) {
+exports.default = { actions: _actions2.default, reducer: _reducer2.default, middleware: _middleware2.default };
+},{"./reducer":7,"./actions":6,"./middleware":8}],3:[function(require,module,exports) {
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -1488,7 +1459,7 @@ btn2.onclick = function () {
     type: 'FAILURE_2'
   });
 };
-},{"./store":3,"../../lib":4}],32:[function(require,module,exports) {
+},{"./store":3,"../../lib":4}],28:[function(require,module,exports) {
 
 var global = (1, eval)('this');
 var OldModule = module.bundle.Module;
@@ -1510,7 +1481,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = '' || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + '64833' + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + '57091' + '/');
   ws.onmessage = function (event) {
     var data = JSON.parse(event.data);
 
@@ -1611,5 +1582,5 @@ function hmrAccept(bundle, id) {
     return hmrAccept(global.require, id);
   });
 }
-},{}]},{},[32,2])
+},{}]},{},[28,2])
 //# sourceMappingURL=/dist/basic.map

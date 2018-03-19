@@ -30,3 +30,17 @@ export const unregisterLoader = id => ({
   type: UNREGISTER_LOADER,
   payload: id,
 });
+
+export default {
+  // Actions
+  STOP_LOADING,
+  START_LOADING,
+  REGISTER_LOADER,
+  UNREGISTER_LOADER,
+
+  // Action creators
+  stopLoading,
+  startLoading,
+  registerLoader,
+  unregisterLoader,
+};
