@@ -891,7 +891,7 @@ function combineReducers(reducers) {
     return hasChanged ? nextState : state;
   };
 }
-},{"./createStore":9,"lodash-es/isPlainObject":17,"./utils/warning":14}],12:[function(require,module,exports) {
+},{"./createStore":9,"lodash-es/isPlainObject":17,"./utils/warning":14}],11:[function(require,module,exports) {
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -984,7 +984,7 @@ function compose() {
     };
   });
 }
-},{}],11:[function(require,module,exports) {
+},{}],12:[function(require,module,exports) {
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -1101,7 +1101,7 @@ exports.combineReducers = _combineReducers2.default;
 exports.bindActionCreators = _bindActionCreators2.default;
 exports.applyMiddleware = _applyMiddleware2.default;
 exports.compose = _compose2.default;
-},{"./createStore":9,"./combineReducers":10,"./bindActionCreators":12,"./applyMiddleware":11,"./compose":13,"./utils/warning":14}],8:[function(require,module,exports) {
+},{"./createStore":9,"./combineReducers":10,"./bindActionCreators":11,"./applyMiddleware":12,"./compose":13,"./utils/warning":14}],8:[function(require,module,exports) {
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -1320,17 +1320,31 @@ exports.default = middleware;
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.reduxLoaderMiddleware = exports.reduxLoaderReducer = exports.reduxLoaderActions = undefined;
+exports.middleware = exports.reducer = exports.actions = exports.reduxLoaderMiddleware = exports.reduxLoaderReducer = exports.reduxLoaderActions = undefined;
 
 var _reducer = require('./reducer');
+
+Object.defineProperty(exports, 'reducer', {
+  enumerable: true,
+  get: function get() {
+    return _interopRequireDefault(_reducer).default;
+  }
+});
+
+var _middleware = require('./middleware');
+
+Object.defineProperty(exports, 'middleware', {
+  enumerable: true,
+  get: function get() {
+    return _interopRequireDefault(_middleware).default;
+  }
+});
 
 var _reducer2 = _interopRequireDefault(_reducer);
 
 var _actions = require('./actions');
 
 var reduxLoaderActions = _interopRequireWildcard(_actions);
-
-var _middleware = require('./middleware');
 
 var _middleware2 = _interopRequireDefault(_middleware);
 
@@ -1354,7 +1368,8 @@ exports.reduxLoaderActions = reduxLoaderActions;
 exports.reduxLoaderReducer = _reducer2.default;
 exports.reduxLoaderMiddleware = _middleware2.default;
 exports.default = _middleware2.default;
-},{"./reducer":6,"./actions":8,"./middleware":7}],3:[function(require,module,exports) {
+exports.actions = reduxLoaderActions;
+},{"./reducer":6,"./middleware":7,"./actions":8}],3:[function(require,module,exports) {
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -1473,7 +1488,7 @@ btn2.onclick = function () {
     type: 'FAILURE_2'
   });
 };
-},{"./store":3,"../../lib":4}],36:[function(require,module,exports) {
+},{"./store":3,"../../lib":4}],32:[function(require,module,exports) {
 
 var global = (1, eval)('this');
 var OldModule = module.bundle.Module;
@@ -1495,7 +1510,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = '' || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + '54545' + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + '64833' + '/');
   ws.onmessage = function (event) {
     var data = JSON.parse(event.data);
 
@@ -1596,5 +1611,5 @@ function hmrAccept(bundle, id) {
     return hmrAccept(global.require, id);
   });
 }
-},{}]},{},[36,2])
+},{}]},{},[32,2])
 //# sourceMappingURL=/dist/basic.map
