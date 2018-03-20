@@ -6,7 +6,7 @@
 A redux middleware to handle loading states triggered through start and stop actions.
 
 ## Why would I need this?
-Ever wanted a loading indicator while you are fetching a large amount of data. Ever wanted to block a submit button from being clicking again after you have submitted a form. Then this is the solution for you. Instead of going through the hassle of maintaining loading states for your buttons and containers, `redux-loader` does it for you.
+Ever wanted a loading indicator while you are fetching a large amount of data. Ever wanted to block a submit button from being clicked again after you have submitted a form. Then this is the solution for you. Instead of going through the hassle of maintaining loading states for your buttons and containers, `redux-loader` does it for you.
 
 ## Getting started
 The first step is to add `redux-loader` into your project.
