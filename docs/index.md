@@ -10,10 +10,10 @@ import { reduxLoaderActions } from 'redux-loader';
 
 Redux Loader provides multiple actions as follows:
 ```js
-STOP_LOADING: '@@STOP_LOADING'
-START_LOADING: '@@START_LOADING'
-REGISTER_LOADER: '@@REGISTER_LOADER'
-UNREGISTER_LOADER: '@@UNREGISTER_LOADER'
+STOP_LOADING: '@@RL/STOP_LOADING'
+START_LOADING: '@@RL/START_LOADING'
+REGISTER_LOADER: '@@RL/REGISTER_LOADER'
+UNREGISTER_LOADER: '@@RL/UNREGISTER_LOADER'
 ```
 
 **REGISTER_LOADER**
@@ -21,7 +21,7 @@ UNREGISTER_LOADER: '@@UNREGISTER_LOADER'
 Used to register a loader into the redux store.
 ```js
 {
-  type: '@@REGISTER_LOADER',
+  type: '@@RL/REGISTER_LOADER',
   payload: {
     id: 'loaderName',
     startActions: ['START_ACTION'],
@@ -36,7 +36,7 @@ Used to unregister loader from redux store.
 
 ```js
 {
-  type: '@@UNREGISTER_LOADER',
+  type: '@@RL/UNREGISTER_LOADER',
   payload: 'loaderName'
 }
 ```
@@ -47,7 +47,7 @@ Used to enable loading state.
 
 ```js
 {
-  type: '@@START_LOADING',
+  type: '@@RL/START_LOADING',
   payload: 'loaderName'
 }
 ```
@@ -58,7 +58,7 @@ Used to disable loading state.
 
 ```js
 {
-  type: '@@STOP_LOADING',
+  type: '@@RL/STOP_LOADING',
   payload: 'loaderName'
 }
 ```
@@ -75,7 +75,7 @@ registerLoader({
 })
 ```
 
-Returns `@@REGISTER_LOADER`.
+Returns `@@RL/REGISTER_LOADER`.
 
 Example
 ```js
@@ -92,7 +92,7 @@ reduxLoaderActions.registerLoader({
 unregisterLoader(id: String)
 ```
 
-Returns `@@UNREGISTER_LOADER`.
+Returns `@@RL/UNREGISTER_LOADER`.
 
 Example
 ```js
@@ -105,7 +105,7 @@ reduxLoaderActions.unregisterLoader('loaderName');
 startLoading(id: String)
 ```
 
-Returns `@@START_LOADING`.
+Returns `@@RL/START_LOADING`.
 
 Example
 ```js
@@ -118,7 +118,7 @@ reduxLoaderActions.startLoading('loaderName');
 stopLoading(id: String)
 ```
 
-Returns `@@STOP_LOADING`.
+Returns `@@RL/STOP_LOADING`.
 
 Example
 ```js
@@ -151,7 +151,7 @@ Stores the dispatched `@REGISTER_LOADER` action payload as is, with the id as th
 
 **loaders**
 
-Stores the loader ids as key and `bool` as values. This is the main state used to enable or disable loading values. `@@START_LOADING`, `@@STOP_LOADING`, and `@@UNREGISTER_LOADER` actions reference ids from this section.
+Stores the loader ids as key and `bool` as values. This is the main state used to enable or disable loading values. `@@RL/START_LOADING`, `@@RL/STOP_LOADING`, and `@@RL/UNREGISTER_LOADER` actions reference ids from this section.
 
 **startActions**
 

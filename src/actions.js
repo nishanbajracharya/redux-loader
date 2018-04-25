@@ -1,7 +1,7 @@
-export const STOP_LOADING = '@@STOP_LOADING';
-export const START_LOADING = '@@START_LOADING';
-export const REGISTER_LOADER = '@@REGISTER_LOADER';
-export const UNREGISTER_LOADER = '@@UNREGISTER_LOADER';
+export const STOP_LOADING = '@@RL/STOP_LOADING';
+export const START_LOADING = '@@RL/START_LOADING';
+export const REGISTER_LOADER = '@@RL/REGISTER_LOADER';
+export const UNREGISTER_LOADER = '@@RL/UNREGISTER_LOADER';
 
 export const stopLoading = id => ({
   type: STOP_LOADING,

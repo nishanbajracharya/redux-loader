@@ -52,10 +52,10 @@ const reducer = combineReducers({
 Redux loader provides a bunch of actions that can be used to manage the loading states.
 
 ```js
-STOP_LOADING = '@@STOP_LOADING'
-START_LOADING = '@@START_LOADING'
-REGISTER_LOADER = '@@REGISTER_LOADER'
-UNREGISTER_LOADER = '@@UNREGISTER_LOADER'
+STOP_LOADING = '@@RL/STOP_LOADING'
+START_LOADING = '@@RL/START_LOADING'
+REGISTER_LOADER = '@@RL/REGISTER_LOADER'
+UNREGISTER_LOADER = '@@RL/UNREGISTER_LOADER'
 ```
 > You'll only really need `REGISTER_LOADER` and `UNREGISTER_LOADER` but other actions can also be used.
 
