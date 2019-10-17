@@ -1,18 +1,18 @@
-[![Build Status](https://travis-ci.org/nishanbajracharya/redux-loader.svg?branch=master)](https://travis-ci.org/nishanbajracharya/redux-loader)
-[![Package version](https://img.shields.io/badge/version-0.1.4-green.svg)](https://github.com/nishanbajracharya/redux-loader)
+[![Build Status](https://travis-ci.org/nishanbajracharya/redux-state-loader.svg?branch=master)](https://travis-ci.org/nishanbajracharya/redux-state-loader)
+[![Package version](https://img.shields.io/badge/version-0.1.4-green.svg)](https://github.com/nishanbajracharya/redux-state-loader)
 
 
-# Redux Loader
+# Redux State Loader
 A redux middleware to handle loading states triggered through start and stop actions.
 
 ## Why would I need this?
-Ever wanted a loading indicator while you are fetching a large amount of data. Ever wanted to block a submit button from being clicked again after you have submitted a form. Then this is the solution for you. Instead of going through the hassle of maintaining loading states for your buttons and containers, `redux-loader` does it for you.
+Ever wanted a loading indicator while you are fetching a large amount of data. Ever wanted to block a submit button from being clicked again after you have submitted a form. Then this is the solution for you. Instead of going through the hassle of maintaining loading states for your buttons and containers, `redux-state-loader` does it for you.
 
 ## Getting started
-The first step is to add `redux-loader` into your project.
+The first step is to add `redux-state-loader` into your project.
 
 ```
-npm install --save nishanbajracharya/redux-loader
+npm install --save redux-state-loader
 ```
 
 > Note: The package itself has no dependencies but would be useless without [Redux](https://redux.js.org/).
@@ -22,7 +22,7 @@ The next step is to register the middleware in the redux store.
 ```js
 //store.js
 
-import { reduxLoaderReducer, reduxLoaderMiddleware } from 'redux-loader';
+import { reduxLoaderReducer, reduxLoaderMiddleware } from 'redux-state-loader';
 import { applyMiddleware, createStore, compose, combineReducers } from 'redux';
 
 const loaderMiddleware = reduxLoaderMiddleware();
@@ -78,7 +78,7 @@ unregisterLoader(id: String): Action
 Start by importing the action creators.
 
 ```js
-import { reduxLoaderActions } from 'redux-loader';
+import { reduxLoaderActions } from 'redux-state-loader';
 ```
 
 Next register a loader by supplying a unique id, start actions and stop actions.
@@ -124,7 +124,7 @@ const EnhancedComponent = connect(mapStateToProps)(Component);
 You can also manually trigger loading using `startLoading` and `stopLoading` actions.
 
 ```js
-import { reduxLoaderActions } from 'redux-loader';
+import { reduxLoaderActions } from 'redux-state-loader';
 
 // Trigger loading of myLoader
 store.dispatch(reduxLoaderActions.startLoading('myLoader'));
