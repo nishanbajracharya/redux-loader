@@ -2697,8 +2697,8 @@ levn@~0.3.0:
     type-check "~0.3.2"
 
 lodash-es@^4.2.1:
-  version "4.17.7"
-  resolved "https://registry.yarnpkg.com/lodash-es/-/lodash-es-4.17.7.tgz#db240a3252c3dd8360201ac9feef91ac977ea856"
+  version "4.17.15"
+  resolved "https://registry.yarnpkg.com/lodash-es/-/lodash-es-4.17.15.tgz#21bd96839354412f23d7a10340e5eac6ee455d78"
 
 lodash.clone@^4.5.0:
   version "4.5.0"
